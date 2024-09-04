@@ -64,8 +64,8 @@ struct ContentView: View {
                                                           homeScore: 5,
                                                           pitcher: "Otani Shohei",
                                                           hitter: "Junghu Lee",
-                                                          era: "3.07",
-                                                          battingAverage: "0.375",
+                                                          era: "3.07 ERA",
+                                                          battingAverage: ".375 AVG",
                                                           live: "Bot 9th 3-2 2out",
                                                           imageName: "baseball")
         
@@ -137,6 +137,12 @@ struct ContentView: View {
         self.activities = activities
     }
 
+    func end(activity: Activity<MLBLiveAttributes>) {
+        Task {
+            await activity.end(dismissalPolicy: .immediate)
+        }
+    }
+    
     func endAllActivity() {
         Task {
             for activity in Activity<MLBLiveAttributes>.activities{
@@ -170,5 +176,11 @@ extension ContentView {
             }
         }
         return body
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

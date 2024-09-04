@@ -1,0 +1,42 @@
+export TEAM_ID=22F59WHQP8
+export TOKEN_KEY_FILE_NAME=/Users/wch.heo/Documents/keys/AuthKey_L6VKZF7M9V.p8
+export AUTH_KEY_ID=L6VKZF7M9V
+export DEVICE_TOKEN=808ffb2afc1f114c1eef904942367b77e7591c1e6d2d57d0e3f3c39800409d732b7dda48c20f57b1c6adf61f77aaf17eee645dfbe2cd3dec8b4d48cb7e29a82e93bdbf0ace99b71a9bdc158e1ea5e8d7
+export APNS_HOST_NAME=api.sandbox.push.apple.com
+
+export JWT_ISSUE_TIME=$(date +%s)
+export JWT_HEADER=$(printf '{ "alg": "ES256", "kid": "%s" }' "${AUTH_KEY_ID}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
+export JWT_CLAIMS=$(printf '{ "iss": "%s", "iat": %d }' "${TEAM_ID}" "${JWT_ISSUE_TIME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
+export JWT_HEADER_CLAIMS="${JWT_HEADER}.${JWT_CLAIMS}"
+export JWT_SIGNED_HEADER_CLAIMS=$(printf "${JWT_HEADER_CLAIMS}" | openssl dgst -binary -sha256 -sign "${TOKEN_KEY_FILE_NAME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
+export AUTHENTICATION_TOKEN="${JWT_HEADER}.${JWT_CLAIMS}.${JWT_SIGNED_HEADER_CLAIMS}"
+
+
+curl -v \
+--header "apns-topic:com.woncheol.MLBLive.push-type.liveactivity" \
+--header "apns-push-type:liveactivity" \
+--header "authorization: bearer $AUTHENTICATION_TOKEN" \
+--data \
+'{"aps": {
+"event": "update",
+"timestamp":1725436500,
+"sound": "chime",
+"content-state": {
+"awayTeam": "LAD",
+"homeTeam": "SF",
+"awayScore": 7,
+"homeScore": 8,
+"pitcher": "Otani Shohei",
+"hitter": "Junghu Lee",
+"era": "3.14 ERA",
+"battingAverage": ".382 AVG",
+"live": "JungHu hits 3 homerun.\n The match just ended ",
+"imageName": "ball"
+},
+"alert": {
+"title": "Hello",
+"body": "update"
+}
+}}' \
+--http2 \
+https://${APNS_HOST_NAME}/3/device/$DEVICE_TOKEN

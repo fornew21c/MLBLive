@@ -84,6 +84,12 @@ struct LiveWidgetLiveActivity: Widget {
         VStack {
             HStack {
                 Spacer().frame(width: 10)
+                Image(context.state.awayTeam)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 25, height: 25)
+                    .cornerRadius(12)
+                Spacer().frame(width:8)
                 Text(context.state.awayTeam)
                     .font(.system(size:25))
                     .bold()
@@ -98,26 +104,35 @@ struct LiveWidgetLiveActivity: Widget {
     func dynamicIslandExpandedTrailingView(context: ActivityViewContext<MLBLiveAttributes>) -> some View {
         VStack {
             HStack {
+                Text("\(context.state.homeScore)")
+                    .font(.system(size:25))
+                    .bold()
+                Spacer().frame(width:8)
                 Text(context.state.homeTeam)
                     .font(.system(size:25))
                     .bold()
                 Spacer().frame(width:8)
-                Text("\(context.state.homeScore)")
-                    .font(.system(size:25))
-                    .bold()
+                Image(context.state.homeTeam)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 25, height: 25)
+                    .cornerRadius(12)
                 Spacer().frame(width:10)
             }
         }
     }
     
     func dynamicIslandExpandedCenterView(context: ActivityViewContext<MLBLiveAttributes>) -> some View {
-        HStack {
+        var cornerRadius = 0.0
+        if context.state.imageName == "ball" {
+            cornerRadius = 20.0
+        }
+        return HStack {
             Image(context.state.imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 30, height: 30)
-                .cornerRadius(15)
-                .activityBackgroundTint(Color.black)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+                .cornerRadius(cornerRadius)
         }
     }
 
@@ -196,7 +211,6 @@ struct LockScreenView: View {
             }
         }
         .padding(15)
-        .background(Color.white)
        
     }
     
@@ -204,6 +218,12 @@ struct LockScreenView: View {
         VStack {
             HStack {
                 Spacer().frame(width: 10)
+                Image(context.state.awayTeam)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
+                    .cornerRadius(12)
+                Spacer().frame(width:8)
                 Text(context.state.awayTeam)
                     .font(.system(size:25))
                     .bold()
@@ -217,25 +237,35 @@ struct LockScreenView: View {
     }
     
     func LockScreenCenterView(context: ActivityViewContext<MLBLiveAttributes>) -> some View {
-        HStack {
+        var cornerRadius = 0.0
+        if context.state.imageName == "ball" {
+            cornerRadius = 20.0
+        }
+        return HStack {
             Image(context.state.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 30, height: 30)
-                .activityBackgroundTint(Color.black)
+                .frame(width: 40, height: 40)
+                .cornerRadius(cornerRadius)
         }
     }
     
     func LockScreenTrailingView(context: ActivityViewContext<MLBLiveAttributes>) -> some View {
         VStack {
             HStack {
+                Text("\(context.state.homeScore)")
+                    .font(.system(size:25))
+                    .bold()
+                Spacer().frame(width:8)
                 Text(context.state.homeTeam)
                     .font(.system(size:25))
                     .bold()
                 Spacer().frame(width:8)
-                Text("\(context.state.homeScore)")
-                    .font(.system(size:25))
-                    .bold()
+                Image(context.state.homeTeam)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
+                    .cornerRadius(12)
                 Spacer().frame(width:10)
             }
         }
@@ -288,4 +318,45 @@ extension Color {
             blue: .random(in: 0...1)
         )
     }
+}
+
+extension MLBLiveAttributes {
+    fileprivate static var preview: MLBLiveAttributes {
+        MLBLiveAttributes(ballpark: "Fanway Park")
+    }
+}
+
+extension MLBLiveAttributes.ContentState {
+    fileprivate static var smiley: MLBLiveAttributes.ContentState {
+        MLBLiveAttributes.ContentState(awayTeam: "LAD",
+                                        homeTeam: "SF",
+                                        awayScore: 7,
+                                        homeScore: 5,
+                                        pitcher: "Otani Shohei",
+                                        hitter: "Junghu Lee",
+                                        era: "3.07 ERA",
+                                        battingAverage: ".375 AVG",
+                                        live: "Bot 9th 3-2 2out",
+                                        imageName: "baseball")
+     }
+     
+     fileprivate static var starEyes: MLBLiveAttributes.ContentState {
+         MLBLiveAttributes.ContentState(awayTeam: "LAD",
+                                         homeTeam: "SF",
+                                         awayScore: 7,
+                                         homeScore: 5,
+                                         pitcher: "Otani Shohei",
+                                         hitter: "Junghu Lee",
+                                         era: "3.07 ERA",
+                                         battingAverage: ".375 AVG",
+                                         live: "Bot 9th 3-2 2out",
+                                         imageName: "baseball")
+     }
+}
+
+#Preview("Notification", as: .content, using: MLBLiveAttributes.preview) {
+    LiveWidgetLiveActivity()
+} contentStates: {
+    MLBLiveAttributes.ContentState.smiley
+    MLBLiveAttributes.ContentState.starEyes
 }
