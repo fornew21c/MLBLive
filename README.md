@@ -14,7 +14,7 @@ minimalAttach
 ![minimalDetach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalDetach.png)
 minimalDetach
 
-![lockScreen](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/lockScreen.png)
+![lockScreen](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/lockScreen.jpeg)
 lockScreen
 
 ![standby](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/standby.jpeg)
