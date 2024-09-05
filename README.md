@@ -8,10 +8,10 @@ compact
 ![expanded](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/expanded.png)
 expanded
 
-![minimalAttach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalAttach.png)
-minimalAttach
-
 ![minimalDetach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalDetach.png)
+minimalAttch
+
+![minimalAttach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalAttach.png)
 minimalDetach
 
 <img src="https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/lockScreen.jpeg" alt="Sample Image" width="300">
