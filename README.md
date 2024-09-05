@@ -5,18 +5,19 @@ This demo app was developed for Create Live Activities With ActivityKit on iOS 1
 ![compact](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/compacted.png)
 compact
 
-![expanded](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/expanded.png))
+![expanded](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/expanded.png)
 expanded
 
 ![minimalAttach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalAttach.png)
 minimalAttach
 
-![minimalDetach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalDetach.png))
+![minimalDetach](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/minimalDetach.png)
 minimalDetach
 
+![lockScreen](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/lockScreen.png)
+lockScreen
 
-<p>
-<img src="https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/lockScreen.jpeg" alt="Sample Image" width="200">
-<img src="https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/standby.jpeg" alt="Sample Image" width="600">
-</p>
+![standby](https://raw.githubusercontent.com/fornew21c/MLBLive/main/screenShot/standby.jpeg)
+standby
+
 
